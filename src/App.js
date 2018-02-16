@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  NavLink
+  NavLink,
+  Switch
 } from 'react-router-dom'
 import './ui-toolkit/css/nm-cx/main.css'
 import './App.css';
@@ -33,11 +34,11 @@ class App extends Component {
             <div className="small-10 columns">
               <Route exact path="/countries/:name" component={Countries} />
               <Route path="/tracking/" component={Tracking} />
-              <Route path="/country/:id" component={Country} />
+              <Route exact path="/country/:name" component={Country} />
             </div>
           </div>
         </div>
-      </Router >
+      </Router>
     );
   }
 }

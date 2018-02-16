@@ -19,41 +19,20 @@ class Country extends Component {
     }
 
     this.getCountry = this.getCountry.bind(this)
-    this.getTrackedCountry = this.getTrackedCountry.bind(this)
   }
 
   componentDidMount() {
-    // this.getCountry(this.props.match.params.name)
-    const rtvCountry = {
-      id: this.props.match.params.id
-    }
-    this.getTrackedCountry(rtvCountry)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // this.getCountry(nextProps.match.params.name)
-    this.getTrackedCountry(this.props.match.params.id)
+    this.getCountry(this.props.match.params.name)
   }
 
   getCountry(matchName) {
-    let apiVal = `https://restCountry.eu/rest/v2/regionalbloc/${matchName}`
+    let apiVal = `https://restcountries.eu/rest/v2/name/${matchName}`
     axios.get(apiVal)
       .then((response) => {
         this.setState({ country: response.data, blocCountryExist: true })
       })
       .catch((error) => {
         this.setState({ country: { name: "Bloc Country get failed" }, blocCountryExist: false })
-      })
-  }
-
-  getTrackedCountry(matchId) {
-    let apiVal = `http://5a85f13e085fdd001270430a.mockapi.io/countries2/${matchId.id}`
-    axios.get(apiVal)
-      .then((response) => {
-        this.setState({ country: response.data })
-      })
-      .catch((error) => {
-        this.setState({ country: { name: "Tracked Country get failed" } })
       })
   }
 
@@ -74,6 +53,31 @@ class Country extends Component {
                 <div className="card">
                   <p><label>Country Name:</label>{country.name}</p>
                   <p><label>Capital:</label>{country.capital}</p>
+                  {country.currencies.map((currency, idx) => {
+                    if (idx === 0) {
+                      return (
+                        <div>
+                          <p><label>Currencies:</label>Name: {currency.name}</p>
+                          <p>Symbol: {currency.symbol}</p>
+                        </div>)
+                    }
+                    else {
+                      return (
+                        <div>
+                          <p>Name: {currency.name}</p>
+                          <p>Symbol: {currency.symbol}</p>
+                        </div>)
+                    }
+                  })}
+                  {country.languages.map((language, idx) => {
+                    // return (
+                    if (idx === 0) {
+                      return (<p><label>Languages:</label>{language.name}</p>)
+                    }
+                    else {
+                      return (<p>{language.name}</p>)
+                    }
+                  })}
                   <p><label>Population:</label>{country.population}</p>
                 </div>
               </div>

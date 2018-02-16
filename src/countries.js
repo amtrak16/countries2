@@ -82,7 +82,6 @@ class Countries extends Component {
       })
   }
 
-
   render() {
 
     return (
@@ -98,7 +97,7 @@ class Countries extends Component {
               </div>
               <div className="small-9 columns">
                 <div className="card">
-                  <p><label>Country Name:</label>{country.name}</p>
+                  <p><label>Country Name:</label><NavLink exact to={`/country/${country.name}`} activeStyle={{ fontWeight: 'bold', color: 'red' }}>{country.name}</NavLink></p>
                   <p><label>Capital:</label>{country.capital}</p>
                   <p><label>Population:</label>{country.population}</p>
                   {this.state.trackedCountries.filter(trackedCountry => (country.numericCode === trackedCountry.numericCode)).length > 0 ?
