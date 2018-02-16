@@ -17,3 +17,27 @@
   border-color: blue;
   border-radius: 5px;
 }
+.trackedbtn {
+  background-color: burlywood;
+  color: black;
+}
+.trackedbtn:hover{
+  color: burlywood;
+  background-color: black;
+}
+.trackbtn {
+  background-color: green;
+  color: white;
+}
+.trackbtn:hover{
+  color: green;
+  background-color: white;
+}
+.trackedbtn2 {
+  background-color: red;
+  color: white;
+}
+.trackedbtn2:hover {
+  color: red;
+  background-color: white;
+}

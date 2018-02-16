@@ -8,8 +8,8 @@ import {
 import './ui-toolkit/css/nm-cx/main.css'
 import './App.css';
 import Countries from './countries';
-// import Results from './results';
-// import Rankings from './rankings'
+import Tracking from './tracking';
+import Country from './country'
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <h1 className="App-title">Countries 2</h1>
+            <h1 className="App-title">Countries</h1>
           </header>
           <div className="row">
             <div className="small-2 columns">
@@ -32,8 +32,8 @@ class App extends Component {
             </div>
             <div className="small-10 columns">
               <Route exact path="/countries/:name" component={Countries} />
-              {/* <Route path="/tracking/" component={Tracking} />
-              <Route path="/country/:name" component={Country} /> */}
+              <Route path="/tracking/" component={Tracking} />
+              <Route path="/country/:id" component={Country} />
             </div>
           </div>
         </div>
@@ -59,12 +59,12 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <ul class="filter-nav vertical">
+        <ul className="filter-nav vertical">
           <li className="filter-nav-entry vertical"><NavLink exact to="/" activeStyle={{ fontWeight: 'bold', color: 'red' }}>Home</NavLink></li>
           <li className="filter-nav-entry vertical"><NavLink exact to="/tracking" activeStyle={{ fontWeight: 'bold', color: 'red' }}>Tracking</NavLink></li>
           {this.state.blocs.map((bloc, idx) => {
             return (
-              <li className="filter-nav-entry vertical"><NavLink exact to={`/countries/${bloc.name}`} activeStyle={{ fontWeight: 'bold', color: 'red' }}>{bloc.name}</NavLink></li>
+              <li key={idx} className="filter-nav-entry vertical"><NavLink exact to={`/countries/${bloc.name}`} activeStyle={{ fontWeight: 'bold', color: 'red' }}>{bloc.name}</NavLink></li>
             )
           })}
         </ul>
